@@ -1,0 +1,49 @@
+ <div className='container'>
+  <h1>Signup</h1>
+  <form onSubmit={handleSignup}>
+    {/* Name Field */}
+    <div>
+      <label htmlFor='name'>Name</label>
+      <input 
+        onChange={handleChange}
+        type='text' 
+        id='name'
+        name='name' 
+        autoFocus 
+        placeholder='Enter your name...' 
+      />
+    </div>
+
+    {/* Email Field */}
+    <div>
+      <label htmlFor='email'>Email</label>
+      <input 
+        onChange={handleChange}
+        type='email' 
+        id='email'
+        name='email' 
+        placeholder='Enter your email...' 
+      />
+    </div>
+
+    {/* Password Field */}
+    <div>
+      <label htmlFor='password'>Password</label>
+      <input
+        onChange={handleChange} 
+        type='password' 
+        id='password'
+        name='password' 
+        placeholder='Enter your password...' 
+      />
+    </div>
+    
+    <button type="submit" >signup</button>
+    <span>
+      Already have an account <Link to='/login'>Login</Link>
+    </span>
+
+  </form>
+
+  
+</div>
