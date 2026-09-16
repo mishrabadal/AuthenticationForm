@@ -4,7 +4,7 @@ import { Link ,useNavigate} from 'react-router-dom';
 function Home() {
     const navigate = useNavigate()
     const [loggedInUser, setLoggedInUser] = useState('');
-     const [products, setProducts] = useState("");
+     const [products, setProducts] = useState('');
 
     useEffect(() => {
         setLoggedInUser(localStorage.getItem('loggedInUser'))
@@ -34,19 +34,11 @@ const fetchProducts = async () => {
             }
         }
         const response = await fetch(url, headers);
-        console.log("response statur",response.status)
         const result = await response.json();
-                if (!response.ok) {
-                 
-            throw new Error(result.message || "Something went wrong");
-            
-        }
+        console.log(result);
         setProducts(result)
     } catch (err) {
-       localStorage.removeItem('token');
-    localStorage.removeItem('loggedInUser');
-        handleError(err.message);
-        navigate("/login")
+        handleError(err);
     }
 }
 

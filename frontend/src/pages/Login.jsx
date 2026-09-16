@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { handleSuccess,handleError } from '../util';
 import { Link ,useNavigate} from 'react-router-dom';
-
+console.log(import.meta.env.VITE_BASE_URL)
 const login = () => {
   const navigate = useNavigate()
   const [loginInfo, setLoginInfo]=useState({
@@ -10,13 +10,7 @@ const login = () => {
     password:''
   })
   const handleChange =(e)=>{
-    const {name,value}=e.target;
-    console.log(name,value)
-    // setLoginInfo({
-    //   ...loginInfo,
-    //   [name]:value
-    // })
-    //we can use one of them 
+    const {name,value}=e.target; 
     const copyloginInfo={...loginInfo}
     copyloginInfo[name]=value
     setLoginInfo(copyloginInfo)
@@ -36,7 +30,7 @@ const login = () => {
 
   // You can replace this with API call
   try{
-const url = "http://localhost:8080/auth/login"
+const url = `${import.meta.env.VITE_BASE_URL}/auth/login`
 const response = await fetch(url,
   {
     method:"POST",
@@ -64,7 +58,7 @@ if(success)
  else{
   handleError(message)
  }
-  console.log()
+  
   }
   catch(err){
     console.log(err)

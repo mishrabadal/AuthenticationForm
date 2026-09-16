@@ -46,48 +46,6 @@ const signup = async (req, res) => {
     }
 }
 
-// const signup = async (req, res) => {
-//   try {
-//     const { name, email, password } = req.body;
-
-//     if (!name || !email || !password) {
-//       return res.status(400).json({
-//         message: "All fields are required",
-//         success: false
-//       });
-//     }
-
-//     const existingUser = await UserModel.findOne({ email });
-//     if (existingUser) {
-//       return res.status(409).json({
-//         message: "User already exists",
-//         success: false
-//       });
-//     }
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     const user = new UserModel({
-//       name,
-//       email,
-//       password: hashedPassword
-//     });
-
-//     await user.save();
-
-//     res.status(201).json({
-//       message: "Signup successful",
-//       success: true
-//     });
-
-//   } catch (err) {
-//     res.status(500).json({
-//       message: "Internal server error",
-//       success: false
-//     });
-//   }
-// };
-
 const login = async (req, res) => {
     try {
         const {
@@ -113,17 +71,21 @@ const login = async (req, res) => {
         }
 
         const isPasswordMatch = await bcrypt.compare(password, user.password);
-        
+
         if (!isPasswordMatch) {
             return res.status(401).json({
                 message: "Invalid credentials or incorrect password",
                 success: false
             });
         }
-        const jwtToken =jwt.sign(
-            {email:user.email,_id:user._id,name:user.name},
-            process.env.JWT_SECRET,
-            {expiresIn:'24h'}
+        const jwtToken = jwt.sign({
+                email: user.email,
+                _id: user._id,
+                name: user.name
+            },
+            process.env.JWT_SECRET, {
+                expiresIn: '24h'
+            }
 
         )
         res.status(200).json({
@@ -131,7 +93,7 @@ const login = async (req, res) => {
             success: true,
             jwtToken,
             email,
-            name:user.name
+            name: user.name
         });
 
     } catch (err) {

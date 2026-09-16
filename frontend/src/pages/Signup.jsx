@@ -12,12 +12,7 @@ const Signup = () => {
   })
   const handleChange =(e)=>{
     const {name,value}=e.target;
-    console.log(name,value)
-    // setSignupInfo({
-    //   ...signupInfo,
-    //   [name]:value
-    // })
-    //we can use one of them 
+    // console.log(name,value)
     const copysignupInfo={...signupInfo}
     copysignupInfo[name]=value
     setSignupInfo(copysignupInfo)
@@ -37,7 +32,7 @@ const Signup = () => {
 
   // You can replace this with API call
   try{
-const url = "http://localhost:8080/auth/signup"
+const url = `${import.meta.env.VITE_BASE_URL}/auth/signup`
 const response = await fetch(url,
   {
     method:"POST",
