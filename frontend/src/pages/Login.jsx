@@ -6,8 +6,8 @@ console.log(import.meta.env.VITE_BASE_URL)
 const login = () => {
   const navigate = useNavigate()
   const [loginInfo, setLoginInfo]=useState({
-    email:"mishrabadal988@gmail.com",
-    password:"12345678"
+    email:"",
+    password:""
   })
   const handleChange =(e)=>{
     const {name,value}=e.target; 
