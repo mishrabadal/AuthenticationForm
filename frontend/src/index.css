@@ -1,6 +1,7 @@
 
 @import "tailwindcss";
 /* Center the form on the page */
+
 .container {
   max-width: 400px;
   margin: 50px auto;
