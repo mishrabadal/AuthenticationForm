@@ -6,8 +6,8 @@ console.log(import.meta.env.VITE_BASE_URL)
 const login = () => {
   const navigate = useNavigate()
   const [loginInfo, setLoginInfo]=useState({
-    email:'',
-    password:''
+    email:"mishrabadal988@gmail.com",
+    password:"12345678"
   })
   const handleChange =(e)=>{
     const {name,value}=e.target; 
@@ -67,12 +67,6 @@ if(success)
 
   console.log("login Data:", loginInfo);
 
-  //Example: reset form after login
-  // setLoginInfo({
-  //   name: "",
-  //   email: "",
-  //   password: ""
-  // });
    e.target.reset()
   }
   return (
