@@ -1,5 +1,6 @@
 const express= require("express")
 const bodyParser = require('body-parser');
+const connectDB = require("./Models/db");
 const app= express()
 const cors = require('cors')
 require("dotenv").config()
@@ -21,6 +22,13 @@ app.get('/ping' , (req , res)=>{
 
 app.use('/auth',AuthRouter)
 app.use('/products',productRouter)
-app.listen(PORT,()=>{
-    console.log('server is running on ',PORT )
-}) 
+
+
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => console.log('server is running on ', PORT));
+  })
+  .catch((err) => {
+    console.error("Failed to start server:", err);
+    process.exit(1);
+  });
